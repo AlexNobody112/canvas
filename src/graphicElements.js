@@ -27,7 +27,12 @@ function putNewPoint(ctx, yPoint, xPoint, circleSize = 12) {
 }
 
 function putLine(ctx, yPoint1, xPoint1, yPoint2, xPoint2) {
+  console.log(yPoint1, yPoint2);
   let pTimestamp = 0;
+  let s = 100;
+
+  const s1 = xPoint2 / 100;
+  const s2 = yPoint2 / 100;
   let x1 = xPoint1;
   let y1 = yPoint1;
   console.log(x1);
@@ -37,17 +42,17 @@ function putLine(ctx, yPoint1, xPoint1, yPoint2, xPoint2) {
     pTimestamp = timestamp;
     // console.log("ticked", diff);
     if (yPoint2 > y1) {
-      y1 += 0.548;
+      y1 += s2;
     }
     if (yPoint2 < y1) {
-      y1 -= 0.548;
+      y1 -= s2;
     }
     if (xPoint2 > x1) {
-      x1 += 1;
+      x1 += s1;
     }
 
     if (xPoint2 < x1) {
-      x1 -= 1;
+      x1 -= s1;
     }
 
     ctx.beginPath();
@@ -56,7 +61,11 @@ function putLine(ctx, yPoint1, xPoint1, yPoint2, xPoint2) {
     ctx.stroke();
 
     ctx.beginPath;
-    if (x1 === xPoint2) {
+    // if (x1 === xPoint2) {
+    //   return;
+    // }
+    s += 1;
+    if (s >= 1000) {
       return;
     }
     requestAnimationFrame(tick);
