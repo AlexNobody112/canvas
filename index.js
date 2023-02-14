@@ -14,10 +14,13 @@ const clearApp = () => {
 
 function redrawCanvas() {
   const points = [
-    { y: Math.floor(Math.random() * 400) },
-    { y: Math.floor(Math.random() * 400) },
-    { y: Math.floor(Math.random() * 400) },
-    { y: Math.floor(Math.random() * 400) },
+    { y: Math.floor(Math.random() * 300) + 40 },
+    { y: Math.floor(Math.random() * 300) + 40 },
+    { y: Math.floor(Math.random() * 300) + 40 },
+    { y: Math.floor(Math.random() * 300) + 40 },
+    { y: Math.floor(Math.random() * 300) + 40 },
+    { y: Math.floor(Math.random() * 300) + 40 },
+    { y: Math.floor(Math.random() * 300) + 40 },
   ];
   const canvasElem = document.createElement("canvas");
   canvasElem.width = CANVAS_WIDTH;
