@@ -28,58 +28,45 @@ function putNewPoint(ctx, yPoint, xPoint, circleSize = 12) {
 
 function putLine(ctx, yPoint1, xPoint1, yPoint2, xPoint2) {
   console.log(yPoint1, yPoint2);
+  const k = (yPoint1 - yPoint2) / (xPoint1 - xPoint2);
+  console.log("k", k);
+  const b = yPoint1 - xPoint1 * k;
   let pTimestamp = 0;
-  let s = 100;
-
-  const s1 = xPoint2 / 100;
-  const s2 = yPoint2 / 100;
   let x1 = xPoint1;
-  let y1 = yPoint1;
-  console.log(x1);
+  let y1;
   requestAnimationFrame(tick);
   function tick(timestamp) {
     const diff = timestamp - pTimestamp;
     pTimestamp = timestamp;
-    // console.log("ticked", diff);
-    if (yPoint2 > y1) {
-      y1 += s2;
-    }
-    if (yPoint2 < y1) {
-      y1 -= s2;
-    }
-    if (xPoint2 > x1) {
-      x1 += s1;
-    }
+    console.log("ticked", diff);
 
-    if (xPoint2 < x1) {
-      x1 -= s1;
-    }
+    y1 = Math.floor(k * x1 + b);
+    x1 += 1;
+
+    console.log(y1);
 
     ctx.beginPath();
     ctx.moveTo(yPoint1, xPoint1);
     ctx.lineTo(y1, x1);
     ctx.stroke();
 
-    ctx.beginPath;
-    // if (x1 === xPoint2) {
-    //   return;
-    // }
-    s += 1;
-    if (s >= 1000) {
+    if (x1 >= xPoint2) {
       return;
     }
+
     requestAnimationFrame(tick);
   }
 }
 
-export default function pointOnCanvas(ctx, baseWidth, yPoint) {
+export default function pointOnCanvas(ctx, baseWidth, yPoints) {
   const xStart = baseWidth * 0.05;
 
-  yPoint.reduce((prev, current, index, arr) => {
+  yPoints.reduce((prev, current, index, arr) => {
     const part = (baseWidth - xStart * 2) / (arr.length - 1);
     const width = index === 0 ? xStart : prev.x + part;
     putNewPoint(ctx, current.y, width);
-    putLine(ctx, prev.y, prev.x, current.y, width);
+    prev.y &&
+      setTimeout(() => putLine(ctx, prev.y, prev.x, current.y, width), 300);
     const coordinates = { x: width, y: current.y };
     return coordinates;
   }, xStart);

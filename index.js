@@ -13,8 +13,12 @@ const clearApp = () => {
 // let pTimestamp = 0;
 
 function redrawCanvas() {
-  const points = [{ y: 120 }, { y: 300 }, { y: 220 }];
-  // const newPoints = points.reduce()
+  const points = [
+    { y: Math.floor(Math.random() * 400) },
+    { y: Math.floor(Math.random() * 400) },
+    { y: Math.floor(Math.random() * 400) },
+    { y: Math.floor(Math.random() * 400) },
+  ];
   const canvasElem = document.createElement("canvas");
   canvasElem.width = CANVAS_WIDTH;
   canvasElem.height = CANVAS_HEIGHT;
