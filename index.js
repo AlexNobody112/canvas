@@ -11,17 +11,27 @@ const clearApp = () => {
 };
 
 // let pTimestamp = 0;
+console.log(Math.random() * 10);
 
 function redrawCanvas() {
-  const points = [
-    { y: Math.floor(Math.random() * 300) + 40 },
-    { y: Math.floor(Math.random() * 300) + 40 },
-    { y: Math.floor(Math.random() * 300) + 40 },
-    { y: Math.floor(Math.random() * 300) + 40 },
-    { y: Math.floor(Math.random() * 300) + 40 },
-    { y: Math.floor(Math.random() * 300) + 40 },
-    { y: Math.floor(Math.random() * 300) + 40 },
-  ];
+  const points =
+    Math.random() * 10 > 5
+      ? [
+          { y: Math.floor(Math.random() * 150) + 100 },
+          { y: Math.floor(Math.random() * 150) + 100 },
+          { y: Math.floor(Math.random() * 150) + 100 },
+          { y: Math.floor(Math.random() * 150) + 100 },
+          { y: Math.floor(Math.random() * 150) + 100 },
+          { y: Math.floor(Math.random() * 150) + 100 },
+          { y: Math.floor(Math.random() * 150) + 100 },
+        ]
+      : [
+          { y: Math.floor(Math.random() * 150) + 100 },
+          { y: Math.floor(Math.random() * 150) + 100 },
+          { y: Math.floor(Math.random() * 150) + 100 },
+          { y: Math.floor(Math.random() * 150) + 100 },
+          { y: Math.floor(Math.random() * 150) + 100 },
+        ];
   const canvasElem = document.createElement("canvas");
   canvasElem.width = CANVAS_WIDTH;
   canvasElem.height = CANVAS_HEIGHT;
