@@ -10,9 +10,6 @@ const clearApp = () => {
   while (app.firstChild) app.removeChild(app.firstChild);
 };
 
-// let pTimestamp = 0;
-console.log(Math.random() * 10);
-
 function redrawCanvas() {
   const points =
     Math.random() * 10 > 5
